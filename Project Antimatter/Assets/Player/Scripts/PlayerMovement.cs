@@ -20,6 +20,15 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
 
+    private Vector3 respawnPoint;
+    public GameObject fallDetector;
+
+    //Start is called before the first frame update
+    void Start()
+    {
+        respawnPoint = transform.position;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -59,6 +68,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             isJumping = false;
+        }
+
+        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "FallDetect")
+        {
+            transform.position = respawnPoint;
         }
     }
 

@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 respawnPoint;
     public GameObject fallDetector;
 
+    public bool flippedLeft;
+    public bool facingRight;
+
     //Start is called before the first frame update
     void Start()
     {
@@ -35,11 +38,13 @@ public class PlayerMovement : MonoBehaviour
         input = Input.GetAxisRaw("Horizontal");
         if(input < 0)
         {
-            spriteRenderer.flipX = true;
+            facingRight = false;
+            Flip(false);
         }
         else if (input > 0)
         {
-            spriteRenderer.flipX = false;
+            facingRight = true;
+            Flip(true);
         }
 
         isGrounded = Physics2D.OverlapCircle(feetPosition.position, groundCheckCircle, groundlayer);
@@ -88,5 +93,19 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         playerRb.velocity = new Vector2(input * speed, playerRb.velocity.y);
+    }
+
+    void Flip (bool facingRight)
+    {
+        if(flippedLeft && facingRight)
+        {
+            transform.Rotate(0, -180, 0);
+            flippedLeft = false;
+        }
+        if(!flippedLeft && !facingRight)
+        {
+            transform.Rotate(0, -180, 0);
+            flippedLeft = true;
+        }
     }
 }

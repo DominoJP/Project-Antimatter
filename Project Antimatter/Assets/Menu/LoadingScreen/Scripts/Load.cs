@@ -15,5 +15,9 @@ public class Load : MonoBehaviour
         {
             SceneManager.LoadScene("TitleScene");
         }
+        else if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 }

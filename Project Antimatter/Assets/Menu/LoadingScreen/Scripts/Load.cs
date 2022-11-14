@@ -5,14 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Load : MonoBehaviour
 {
-    public float loadTime = 5f;
-    [SerializeField] Animator logoAnim;
-    void Start()
-    {
-        logoAnim.Play("LogoAnim");
-    }
+    public float loadTime = 3f;
 
-    // Update is called once per frame
     void Update()
     {
         loadTime -= Time.deltaTime;

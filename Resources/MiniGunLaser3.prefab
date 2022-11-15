@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b32b244cf88994a44b275d8792652340, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50a6a933d645c47408228dfdfbb0f81b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &4306752333731156401
 BoxCollider2D:
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4306752333731156407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7171c28430e12144ae8328747c83368, type: 3}
+  m_Script: {fileID: 11500000, guid: 4838279aeec15204dbb4921c82a6c27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameObject: {fileID: 4306752333731156407}
-  objectlife: 3
+  objectlife: 0.3

@@ -5,15 +5,24 @@ using UnityEngine;
 public class WeaponBehavior : MonoBehaviour
 {
     [SerializeField] GameObject weaponContainer;
+    [SerializeField] SpriteRenderer holster1;
+    [SerializeField] SpriteRenderer weaponholsterMelee;
     [SerializeField] GameObject weaponMiniGun;
     [SerializeField] GameObject weaponLaserGun;
     [SerializeField] GameObject weaponSword;
     [SerializeField] GameObject weaponVortexCannon;
     [SerializeField] GameObject weaponAxe;
-    bool minigunUnlocked = false, lasergunUnlocked = false, swordUnlocked = false, vortexcannonUnlocked = false, axeUnlocked = false;
+    [SerializeField] SpriteRenderer axeProj;
+    public bool minigunUnlocked = false, lasergunUnlocked = false, swordUnlocked = false, vortexcannonUnlocked = false, axeUnlocked = false;
     public int currentWeapon = 1;
     int nextWeapon;
     int previousWeapon;
+
+
+
+    [SerializeField] public GameObject axeFloat;
+
+
     void Start()
     {
 
@@ -83,6 +92,7 @@ public class WeaponBehavior : MonoBehaviour
             weaponSword.SetActive(false);
             weaponVortexCannon.SetActive(false);
             weaponAxe.SetActive(false);
+            axeProj.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (lasergunUnlocked && currentWeapon == 2)
         {
@@ -91,6 +101,7 @@ public class WeaponBehavior : MonoBehaviour
             weaponSword.SetActive(false);
             weaponVortexCannon.SetActive(false);
             weaponAxe.SetActive(false);
+            axeProj.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (swordUnlocked && currentWeapon == 3)
         {
@@ -99,6 +110,7 @@ public class WeaponBehavior : MonoBehaviour
             weaponSword.SetActive(true);
             weaponVortexCannon.SetActive(false);
             weaponAxe.SetActive(false);
+            axeProj.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (vortexcannonUnlocked && currentWeapon == 4)
         {
@@ -107,19 +119,27 @@ public class WeaponBehavior : MonoBehaviour
             weaponSword.SetActive(false);
             weaponVortexCannon.SetActive(true);
             weaponAxe.SetActive(false);
+            axeProj.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (axeUnlocked && currentWeapon == 5)
         {
-            weaponMiniGun.SetActive(true);
+            weaponMiniGun.SetActive(false);
             weaponLaserGun.SetActive(false);
             weaponSword.SetActive(false);
             weaponVortexCannon.SetActive(false);
             weaponAxe.SetActive(true);
+            axeProj.GetComponent<SpriteRenderer>().enabled = true;
         }
 
-        if (!weaponContainer.activeSelf)
+        if (currentWeapon == 3)
         {
-            weaponContainer.SetActive(true);
+            weaponholsterMelee.GetComponent<SpriteRenderer>().enabled = true;
+            holster1.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (currentWeapon != 3)
+        {
+            holster1.GetComponent<SpriteRenderer>().enabled = true;
+            weaponholsterMelee.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

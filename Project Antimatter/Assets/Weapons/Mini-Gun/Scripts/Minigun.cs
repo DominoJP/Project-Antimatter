@@ -32,7 +32,7 @@ public class Minigun : MonoBehaviour
         {
             if (Time.time > timetoShoot)
             {
-                timetoShoot = Time.time + 1 / fireRate2;
+                timetoShoot = Time.time + 1 / fireRate;
                 //Center Bullet
                 GameObject laser = (GameObject)Instantiate(laserRef, minigunlaserLocationObject.transform.position, minigunlaserLocationObject.transform.rotation);
                 laser.GetComponent<Rigidbody2D>().AddForce(laser.transform.right * laserSpeed);

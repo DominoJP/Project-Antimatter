@@ -7,8 +7,7 @@ public class LaserGun : MonoBehaviour
     [SerializeField] GameObject weaponContainer;
     [SerializeField] Transform laserGun;
     [SerializeField] GameObject weaponLaserGun;
-    [SerializeField] float laserSpeed; 
-    [SerializeField] GameObject Beam;
+    [SerializeField] float laserSpeed;
     [SerializeField] GameObject BeamAnimObj;
     [SerializeField] Animator beamAnim;
     [SerializeField] float beamEnterExitTime = 1.5f;
@@ -17,19 +16,14 @@ public class LaserGun : MonoBehaviour
     Animator BeamAnimator;
     Transform BeamTransform;
 
-    Vector2 direction;
     void Start()
     {
         BeamAnimator = (Animator)BeamAnimObj.GetComponent<Animator>();
-        BeamTransform = (Transform)Beam.GetComponent<Transform>();
         beamAnim.Play("BeamExtend");
         beamAnim.SetFloat("Speed", 0);
     }
     void Update()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction = mousePos - (Vector2)(laserGun.position);
-        MouseFacing();
 
         if (weaponLaserGun.activeSelf && Input.GetMouseButtonDown(0))
         {
@@ -43,16 +37,6 @@ public class LaserGun : MonoBehaviour
             Invoke(nameof(LaserRetracted), .6f);
         }
 
-        void MouseFacing()
-        {
-            laserGun.transform.right = direction;
-        }
-
-    }
-
-    void ScriptReset()
-    {
-        weaponContainer.SetActive(false);
     }
     void LaserExtended()
     {

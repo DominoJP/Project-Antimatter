@@ -8,6 +8,8 @@ TagManager:
   - Checkpoint
   - Enemy
   - Blade
+  - Return Platform
+  - ReturnPlatform
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,7 @@ public class TankAI : MonoBehaviour
     private void OnTriggerEnter2D()
     {
 
-        animator.Play("EnemyExplosion");
+            animator.Play("EnemyExplosion");
             Destroy(gameObject);
       
     }

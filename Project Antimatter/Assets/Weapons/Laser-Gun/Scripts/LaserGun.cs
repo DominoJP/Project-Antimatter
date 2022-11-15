@@ -22,6 +22,8 @@ public class LaserGun : MonoBehaviour
     {
         BeamAnimator = (Animator)BeamAnimObj.GetComponent<Animator>();
         BeamTransform = (Transform)Beam.GetComponent<Transform>();
+        beamAnim.Play("BeamExtend");
+        beamAnim.SetFloat("Speed", 0);
     }
     void Update()
     {
@@ -32,14 +34,13 @@ public class LaserGun : MonoBehaviour
         if (weaponLaserGun.activeSelf && Input.GetMouseButtonDown(0))
         {
             LaserExtend();
-            Invoke(nameof(LaserExtend), 1.5f);
+            Invoke(nameof(LaserExtended), .6f);
         }
         if (Input.GetMouseButtonUp(0))
         {
 
             LaserRetract();
-            Invoke(nameof(LaserRetracted), 1.5f);
-            Invoke(nameof(ScriptReset), 1.6f);
+            Invoke(nameof(LaserRetracted), .6f);
         }
 
         void MouseFacing()
@@ -60,7 +61,6 @@ public class LaserGun : MonoBehaviour
     void LaserExtend()
     {
         beamAnim.SetFloat("Speed", 1f);
-        beamAnim.Play("BeamExtend");
     }
     void LaserRetracted()
     {
@@ -70,6 +70,5 @@ public class LaserGun : MonoBehaviour
     void LaserRetract()
     {
         beamAnim.SetFloat("Speed", -1f);
-        beamAnim.Play("BeamExtend");
     }
 }

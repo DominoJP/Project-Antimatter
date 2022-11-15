@@ -6,6 +6,7 @@ public class PlayerHealDamage : MonoBehaviour
 {
     public int health;
     public int maxHealth = 10;
+    public Animator animator;
 
     public HealthBar healthBar;
 
@@ -22,6 +23,7 @@ public class PlayerHealDamage : MonoBehaviour
         healthBar.SetHealth(health);
         if(health <= 0)
         {
+            animator.SetBool("HealthOut", true);
             Destroy(gameObject);
         }
     }

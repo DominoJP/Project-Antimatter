@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTime = 0.35f;
     public float jumpTimeCounter;
 
+    public Animator animator;
+
     private bool isJumping;
 
     private Vector3 respawnPoint;
@@ -47,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
             Flip(true);
         }
 
+        animator.SetFloat("Speed", Mathf.Abs(input));
+
         isGrounded = Physics2D.OverlapCircle(feetPosition.position, groundCheckCircle, groundlayer);
 
         if (isGrounded == true && Input.GetButton("Jump"))
@@ -54,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             playerRb.velocity = Vector2.up * jumpForce;
+            //animator.SetBool("IsJumping", true);
         }
 
         if (Input.GetButton("Jump") && isJumping == true)
@@ -62,17 +67,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRb.velocity = Vector2.up * jumpForce;
                 jumpTimeCounter -= Time.deltaTime;
+                animator.SetBool("IsJumping", true);
             }
 
             else
             {
-                isJumping = false;
+                isJumping = false; 
             }
         }
 
         if (Input.GetButtonUp("Jump"))
         {
             isJumping = false;
+            animator.SetBool("IsJumping", false);
         }
 
     }
